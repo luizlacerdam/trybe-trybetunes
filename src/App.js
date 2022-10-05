@@ -11,7 +11,6 @@ import Search from './pages/Search';
 class App extends React.Component {
   render() {
     return (
-
       <Switch>
         <Route exact path="/" component={ Login } />
         <Route path="/search" component={ Search } />
@@ -21,7 +20,6 @@ class App extends React.Component {
         <Route exact path="/profile/edit" component={ ProfileEdit } />
         <Route component={ NotFound } />
       </Switch>
-
     );
   }
 }
