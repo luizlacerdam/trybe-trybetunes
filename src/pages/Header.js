@@ -1,4 +1,5 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 import { getUser } from '../services/userAPI';
 import Loading from './Loading';
 
@@ -24,6 +25,23 @@ class Header extends React.Component {
     if (loading) return <Loading />;
     return (
       <header data-testid="header-component">
+        <NavLink data-testid="link-to-search" to="/search" activeClassName="selected">
+          Search
+        </NavLink>
+        <NavLink
+          data-testid="link-to-favorites"
+          to="/favorites"
+          activeClassName="selected"
+        >
+          Favorites
+        </NavLink>
+        <NavLink
+          data-testid="link-to-profile"
+          to="/profile"
+          activeClassName="selected"
+        >
+          Profile
+        </NavLink>
         <div data-testid="header-user-name">
           { user }
         </div>
