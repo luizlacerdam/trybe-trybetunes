@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import Loading from '../components/Loading';
 import { createUser } from '../services/userAPI';
-import Loading from './Loading';
 
 class Login extends React.Component {
   state = {
