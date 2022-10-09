@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { addSong, getFavoriteSongs } from '../services/favoriteSongsAPI';
+import { addSong, getFavoriteSongs, removeSong } from '../services/favoriteSongsAPI';
 import Loading from './Loading';
 
 class MusicCard extends React.Component {
@@ -25,20 +25,33 @@ class MusicCard extends React.Component {
   };
 
   handleInputOnChange = async (event) => {
-    const { id } = event.target;
+    const { id, checked } = event.target;
     const { musics } = this.props;
+    const { favorites } = this.state;
+    const track = musics.filter((music) => music.trackId === parseInt(id, 10));
+    if (!checked) {
+      this.setState({ loading: true });
+      const newArr = favorites.filter((song) => song !== parseInt(id, 10));
+      await removeSong(track[0]);
+      this.setState({
+        loading: false,
+        favorites: newArr,
+      });
+      return console.log(newArr, id);
+    }
     this.setState({
       loading: true,
+      favorites: [...favorites, parseInt(id, 10)],
     });
-    const track = musics.filter((music) => music.trackId === parseInt(id, 10));
     await addSong(track[0]);
-    this.setState({ loading: false });
+    this.setState({
+      loading: false,
+    });
   };
 
   handleClick = (event) => {
-    const { favorites } = this.state;
-    const { id } = event.target;
-    this.setState({ favorites: [...favorites, id] });
+    const { checked } = event.target;
+    console.log(checked);
   };
 
   render() {
