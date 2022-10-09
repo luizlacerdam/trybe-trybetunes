@@ -26,7 +26,6 @@ class Album extends React.Component {
 
   render() {
     const { albumNameAndArtist, musics } = this.state;
-    console.log(albumNameAndArtist);
     return (
       <>
         <Header />
