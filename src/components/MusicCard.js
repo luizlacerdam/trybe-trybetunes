@@ -33,11 +33,10 @@ class MusicCard extends React.Component {
       this.setState({ loading: true });
       const newArr = favorites.filter((song) => song !== parseInt(id, 10));
       await removeSong(track[0]);
-      this.setState({
+      return this.setState({
         loading: false,
         favorites: newArr,
       });
-      return console.log(newArr, id);
     }
     this.setState({
       loading: true,
@@ -47,11 +46,6 @@ class MusicCard extends React.Component {
     this.setState({
       loading: false,
     });
-  };
-
-  handleClick = (event) => {
-    const { checked } = event.target;
-    console.log(checked);
   };
 
   render() {
@@ -73,7 +67,6 @@ class MusicCard extends React.Component {
                     favorites.find((elemento) => parseInt(elemento, 10) === track.trackId)
                   }
                   onChange={ this.handleInputOnChange }
-                  onClick={ this.handleClick }
                 />
               </label>
               <audio
@@ -96,7 +89,7 @@ class MusicCard extends React.Component {
 }
 
 MusicCard.propTypes = {
-  musics: PropTypes.arrayOf().isRequired,
+  musics: PropTypes.arrayOf(PropTypes.shape()).isRequired,
 };
 
 export default MusicCard;
