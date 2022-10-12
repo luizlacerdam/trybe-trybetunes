@@ -19,7 +19,7 @@ class MusicCard extends React.Component {
     });
     const response = await getFavoriteSongs();
     this.setState({
-      favorites: response.map((song) => song.trackId),
+      favorites: response,
       loading: false,
     });
   };
@@ -31,7 +31,7 @@ class MusicCard extends React.Component {
     const track = musics.filter((music) => music.trackId === parseInt(id, 10));
     if (!checked) {
       this.setState({ loading: true });
-      const newArr = favorites.filter((song) => song !== parseInt(id, 10));
+      const newArr = favorites.filter((song) => song.trackId !== parseInt(id, 10));
       await removeSong(track[0]);
       return this.setState({
         loading: false,
@@ -40,7 +40,8 @@ class MusicCard extends React.Component {
     }
     this.setState({
       loading: true,
-      favorites: [...favorites, parseInt(id, 10)],
+      favorites: [...favorites, musics
+        .filter((musica) => musica.trackId === parseInt(id, 10))[0]],
     });
     await addSong(track[0]);
     this.setState({
@@ -64,7 +65,7 @@ class MusicCard extends React.Component {
                   type="checkbox"
                   id={ track.trackId }
                   checked={
-                    favorites.find((elemento) => parseInt(elemento, 10) === track.trackId)
+                    favorites.find((elemento) => elemento.trackId === track.trackId)
                   }
                   onChange={ this.handleInputOnChange }
                 />
