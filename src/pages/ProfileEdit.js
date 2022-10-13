@@ -26,7 +26,7 @@ class ProfileEdit extends React.Component {
         newDesc: data.description,
         newImg: data.image,
         loading: false,
-      })));
+      }, () => this.handleSaveButton())));
   };
 
   handleInputOnChange = (event) => {
@@ -34,6 +34,18 @@ class ProfileEdit extends React.Component {
     const { newName, newEmail, newDesc, newImg } = this.state;
     this.setState({
       [id]: value,
+      disabled: (
+        newEmail.length > 0
+        && newName.length > 0
+        && newDesc.length > 0
+        && newImg.length > 0
+      ),
+    });
+  };
+
+  handleSaveButton = () => {
+    const { newName, newEmail, newDesc, newImg } = this.state;
+    this.setState({
       disabled: (
         newEmail.length > 0
         && newName.length > 0
