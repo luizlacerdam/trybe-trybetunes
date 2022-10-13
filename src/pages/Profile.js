@@ -31,12 +31,15 @@ class Profile extends React.Component {
         { loading ? <Loading />
           : (
             <div>
-              <Link to="/profile/edit">Editar perfil</Link>
-              <img
-                data-testid="profile-image"
-                src={ userData.image }
-                alt={ `Foto de ${userData.name}` }
-              />
+              <div>
+                <img
+                  data-testid="profile-image"
+                  src={ userData.image }
+                  alt={ `Foto de ${userData.name}` }
+                />
+                <Link to="/profile/edit">Editar perfil</Link>
+              </div>
+
               <div>{userData.name}</div>
               <div>{userData.email}</div>
               <div>{userData.description}</div>
