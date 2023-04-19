@@ -1,4 +1,4 @@
-# Boas vindas ao projeto Trivia Game!
+# Boas vindas ao projeto Trybe Tunes!
   Projeto individual durante o curso de desenvolvimento web na trybe.
 
 Foi desenvolvido uma aplicação que permita pesquisar e listar álbuns e músicas de bandas e artistas, além de ser possível executar o preview e favoritar músicas preferidas. Dessa forma, foi colocado em prática os conceitos de React Router e lifecycle-methods.
